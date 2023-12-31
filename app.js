@@ -1,7 +1,19 @@
-const heading = React.createElement("h1", {}, "Hello world from react!");
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Header from "./src/Components/Header";
+import Body from "./src/Components/Body";
+import Footer from "./src/Components/Footer";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+// React functional component
 
-
-
-const parent = React.createElement("div",{id:'parent'},[React.createElement("div",{id:"child1"},"Child Element1"),React.createElement("div",{id:"child2"},"Child Element2")])
-root.render(parent);
+const AppLayout = () => {
+  return (
+    <>
+      <Header />
+      <Body />
+      <Footer />
+    </>
+  );
+};
+root.render(<AppLayout />);
