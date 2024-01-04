@@ -34,7 +34,7 @@ const Body = () => {
           </h1>
         </div> */}
         {/* <SortingButtonContainer /> */}
-        <ResCardContainer title="Restaurants with online food deliveryaa" />
+        <ResCardContainer title="Restaurants with online food delivery" />
       </div>
     </>
   );
