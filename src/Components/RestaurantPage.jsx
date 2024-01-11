@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react";
+import MenuContainer from "./MenuContainer";
 
 const RestaurantPage = () => {
-  const [resMenu, setResMenu] = useState(null);
+  const [resData, setResData] = useState(null);
+  const [resMenuData, setResMenuData] = useState(null);
   useEffect(() => {
     const fetchMenu = async () => {
       const fetchData = await fetch(
-        "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.0842228&lng=72.87959359999999&restaurantId=723632&catalog_qa=undefined&submitAction=ENTER"
+        "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.0842228&lng=72.87959359999999&restaurantId=650753&catalog_qa=undefined&submitAction=ENTER"
       );
       const json = await fetchData.json();
-      console.log(json.data.cards);
+      const restaurantData = json?.data?.cards[0]?.card?.card?.info;
+      const menuData =
+        json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+      console.log(json?.data?.cards[0]?.card?.card?.info);
+      console.log(
+        json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+      );
+      setResData(restaurantData);
+      setResMenuData(menuData);
     };
     fetchMenu();
-  });
+  },[]);
 
   return (
     <>
@@ -36,6 +46,8 @@ const RestaurantPage = () => {
               will apply
             </div>
             <div className="mb-4">22 mins | 350 for 2</div>
+
+            <MenuContainer resData={resData} resMenu={resMenuData} />
           </div>
         </div>
       </div>
