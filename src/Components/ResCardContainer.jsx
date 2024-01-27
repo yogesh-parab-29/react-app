@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ResCard from "./ResCard";
-import { resData } from "../utils/dummyData";
 import Buttons from "./Buttons";
 import Shimmercard from "./Shimmercard";
+import { Link } from "react-router-dom";
 
 const ResCardContainer = ({ title }) => {
   const [restaurantData, setRestaurantData] = useState([]);
@@ -93,7 +93,9 @@ const ResCardContainer = ({ title }) => {
                 return <Shimmercard key={index} />;
               })
             : restaurantData.map((res) => (
-                <ResCard key={res.info.id} restaurant={res.info} />
+                <Link key={res.info.id} to={"/restaurant/" + res.info.id}>
+                  <ResCard  restaurant={res.info} />
+                </Link>
               ))}
         </div>
         {/* )} */}
