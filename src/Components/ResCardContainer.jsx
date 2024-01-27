@@ -93,9 +93,9 @@ const ResCardContainer = ({ title }) => {
                 return <Shimmercard key={index} />;
               })
             : restaurantData.map((res) => (
-                // <Link to="">
-                  <ResCard key={res.info.id} restaurant={res.info} />
-                // </Link>
+                <Link key={res.info.id} to={"/restaurant/" + res.info.id}>
+                  <ResCard  restaurant={res.info} />
+                </Link>
               ))}
         </div>
         {/* )} */}
