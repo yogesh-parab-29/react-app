@@ -28,13 +28,7 @@ const Body = () => {
             </button>
           </div>
         </div>
-        {/* <div className="w-3/4 justify-center mx-auto mb-4">
-          <h1 className="text-3xl font-bold mb-6">
-            Restaurants with online food delivery
-          </h1>
-        </div> */}
-        {/* <SortingButtonContainer /> */}
-        <ResCardContainer title="Restaurants with online food deliveryaa" />
+        <ResCardContainer title="Restaurants with online food delivery" />
       </div>
     </>
   );
