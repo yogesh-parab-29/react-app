@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { RES_DATA_CDN_URL } from './common';
+import React, { useEffect, useState } from "react";
+import { RES_DATA_CDN_URL } from "./common";
 
 const useRestaurantData = (restaurantId) => {
   const [resData, setResData] = useState({});
@@ -7,10 +7,11 @@ const useRestaurantData = (restaurantId) => {
 
   useEffect(() => {
     const fetchMenu = async () => {
-      const fetchData = await fetch(RES_DATA_CDN_URL + restaurantId.resId);
+      const fetchData = await fetch(RES_DATA_CDN_URL + restaurantId?.resId);
       const json = await fetchData.json();
-      const restaurantData = json?.data?.cards[0]?.card?.card?.info;
-      const menuData = json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+      const restaurantData = json?.data?.cards[2]?.card?.card?.info;
+      const menuData =
+        json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
       setResData(restaurantData);
       setResMenuData(menuData);
     };

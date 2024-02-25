@@ -41,7 +41,6 @@ const ResCardContainer = ({ title }) => {
         <div className="w-3/4 flex flex-wrap mx-2 my-5 justify-start gap-y-8">
           {restaurantData.length === 0
             ? [...Array(9)].map((_, index) => {
-                console.log(index);
                 return <Shimmercard key={index} />;
               })
             : restaurantData.map((res, index) => (
