@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import MenuDish from './MenuDish';
+import React, { useState } from "react";
+import MenuDish from "./MenuDish";
 
 const MenuSection = ({ restaurant }) => {
   const [activeIndex, setActiveindex] = useState(false);
@@ -10,87 +10,95 @@ const MenuSection = ({ restaurant }) => {
   const handleToggle = (index) => {
     setActiveindex(!activeIndex);
     const isActive = categoryIndex.includes(index);
-    const updateCategory = isActive ? categoryIndex.filter((item) => item !== index) : [...categoryIndex, index];
+    const updateCategory = isActive
+      ? categoryIndex.filter((item) => item !== index)
+      : [...categoryIndex, index];
     setCategoryIndex(updateCategory);
   };
   return resCategories ? (
-    <div className="text-2xl font-black border-b-4 my-4">
+    <div className="text-2xl font-black border-b-4 my-4" key={resTitle}>
       <h1>{resTitle}</h1>
       {resCategories.map(({ title, itemCards }, index) => {
         return (
           <>
-            <div
-              className="flex justify-between items-center border-b py-2 cursor-pointer"
-              onClick={() => {
-                handleToggle(index);
-              }}
-            >
-              <div className="text-base font-normal">
-                {title} ({itemCards.length})
+            <div key={index}>
+              <div
+                className="flex justify-between items-center border-b py-2 cursor-pointer"
+                onClick={() => {
+                  handleToggle(index);
+                }}
+              >
+                <div className="text-base font-normal">
+                  {title} ({itemCards.length})
+                </div>
+                <div
+                  className={`h-4 w-4 ml-2 transition-transform duration-200 transform ${
+                    categoryIndex.includes(index) && "rotate-180"
+                  }`}
+                >
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
               </div>
-              <div className={`h-4 w-4 ml-2 transition-transform duration-200 transform`}>
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
+              {categoryIndex?.includes(index) &&
+                itemCards.map((itemCard) => {
+                  return (
+                    <div className="flex justify-between items-center py-6 border-b gap-x-2">
+                      <MenuDish menuData={itemCard} key={index} />
+                    </div>
+                  );
+                })}
             </div>
-            {categoryIndex?.includes(index) &&
-              itemCards.map((itemCard) => {
-                return (
-                  <div className="flex justify-between items-center py-8 border-b gap-x-2">
-                    <MenuDish menuData={itemCard} />
-                  </div>
-                );
-              })}
           </>
         );
       })}
     </div>
-  ) : resTitle ? (
-    <div
-      className="text-2xl font-black pb-3 border-b-4 my-4 cursor-pointer"
-      onClick={() => {
-        handleToggle();
-      }}
-    >
-      <div className="flex justify-between pb-2 items-center">
+  ) : (
+    <div className="text-2xl font-black border-b-4" key={resTitle}>
+      <div
+        className="flex justify-between items-center cursor-pointer py-6"
+        onClick={() => {
+          handleToggle();
+        }}
+      >
         <h1>{resTitle}</h1>
-        <div className={`h-4 w-4 ml-2 transition-transform duration-200 transform`}>
+        <div
+          className={`h-4 w-4 ml-2 transition-transform duration-200 transform ${
+            activeIndex && "rotate-180"
+          }`}
+        >
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M19 9l-7 7-7-7"
+            />
           </svg>
         </div>
       </div>
       {activeIndex &&
-        resItemCards.map((itemCard) => {
+        resItemCards.map((itemCard, index) => {
           return (
             <>
-              <div className="flex justify-between items-center py-2">
-                <MenuDish menuData={itemCard} />
-                {/* <div className="text-base font-normal flex flex-col">
-            <p className="text-xs">Veg</p>
-            <h1>Dish title</h1>
-            <h3>price</h3>
-            <span className="text-xs text-slate-400">description</span>
-            </div>
-            <div className="text-base font-normal flex flex-col text-center relative">
-            <div className="h-24 w-28 overflow-hidden rounded-lg">
-            <img
-            className="w-full h-full object-cover"
-            src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/l3htbd7pidp14iqg5p6q"
-            ></img>
-            </div>
-            <div className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-7 py-1 mt-3 shadow-md rounded-md bg-white font-bold text-green-500 border-slate-400 border">
-            Add
-            </div>
-        </div> */}
+              <div
+                className={`flex justify-between items-center ${
+                  index === 0 ? "pb-6" : "py-6"
+                } border-b`}
+                key={index}
+              >
+                <MenuDish menuData={itemCard} key={index} />
               </div>
             </>
           );
         })}
     </div>
-  ) : (
-    <div></div>
   );
 };
 
