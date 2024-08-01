@@ -13,7 +13,7 @@ const MenuContainer = ({ resData, resMenu }) => {
               "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
         )
         .map((menu, index) => (
-          <MenuSection key={index} restaurant={menu} />
+          <MenuSection key={index} restaurantMenu={menu} restaurantData = {resData}/>
         ))}
     </>
   );

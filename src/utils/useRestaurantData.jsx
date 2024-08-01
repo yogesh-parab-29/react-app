@@ -9,11 +9,14 @@ const useRestaurantData = (restaurantId) => {
     const fetchMenu = async () => {
       const fetchData = await fetch(RES_DATA_CDN_URL + restaurantId?.resId);
       const json = await fetchData.json();
-      const restaurantData = json?.data?.cards[2]?.card?.card?.info;
+      // const restaurantData = json?.data?.cards[2]?.card?.card?.info;
+      const restaurantData = json?.data?.cards[0]?.card?.card?.info;
       const menuData =
-        json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+        json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
       setResData(restaurantData);
       setResMenuData(menuData);
+      // console.log(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+      console.log(json?.data);
     };
     fetchMenu();
   }, [restaurantId]);

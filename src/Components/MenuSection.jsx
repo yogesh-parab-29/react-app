@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import MenuDish from "./MenuDish";
 
-const MenuSection = ({ restaurant }) => {
+const MenuSection = ({ restaurantMenu, restaurantData }) => {
   const [activeIndex, setActiveindex] = useState(false);
   const [categoryIndex, setCategoryIndex] = useState([]);
-  const resTitle = restaurant?.card?.card?.title;
-  const resItemCards = restaurant?.card?.card?.itemCards;
-  const resCategories = restaurant?.card?.card?.categories;
+  const resTitle = restaurantMenu?.card?.card?.title;
+  const resItemCards = restaurantMenu?.card?.card?.itemCards;
+  const resCategories = restaurantMenu?.card?.card?.categories;
   const handleToggle = (index) => {
     setActiveindex(!activeIndex);
     const isActive = categoryIndex.includes(index);
@@ -50,7 +50,11 @@ const MenuSection = ({ restaurant }) => {
                 itemCards.map((itemCard) => {
                   return (
                     <div className="flex justify-between items-center py-6 border-b gap-x-2">
-                      <MenuDish menuData={itemCard} key={index} />
+                      <MenuDish
+                        menuData={itemCard}
+                        key={index}
+                        resData={restaurantData}
+                      />
                     </div>
                   );
                 })}
@@ -93,7 +97,11 @@ const MenuSection = ({ restaurant }) => {
                 } border-b`}
                 key={index}
               >
-                <MenuDish menuData={itemCard} key={index} />
+                <MenuDish
+                  menuData={itemCard}
+                  key={index}
+                  resData={restaurantData}
+                />
               </div>
             </>
           );

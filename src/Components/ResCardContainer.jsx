@@ -15,8 +15,9 @@ const ResCardContainer = ({ title }) => {
       'https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0842228&lng=72.87959359999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING',
     );
     const data = await response.json();
-    const resData = data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    const resData = data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setRestaurantData(resData);
+    console.log(resData);
   };
   return (
     <>

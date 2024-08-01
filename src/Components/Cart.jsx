@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
+  const itemDetails = useSelector((store) => store.cart.items);
   return (
     <>
       <div className="mt-14 h-auto flex justify-center bg-gray-100">
@@ -12,11 +14,11 @@ const Cart = () => {
               up.
             </div>
             <div>
-              <button className="border w-40 text-sm px-4 py-1 border-green-500 text-green-500">
+              <button className="border w-40 text-sm px-4 py-1 border-green-600 text-green-600">
                 Have an account?
-                <span className="font-bold text-green-500">LOGIN</span>
+                <span className="font-bold text-green-600">LOGIN</span>
               </button>
-              <button className="border w-40 text-sm px-4 py-1 ml-4 border-green-500 bg-green-500 text-white">
+              <button className="border w-40 text-sm px-4 py-1 ml-4 border-green-600 bg-green-600 text-white">
                 New to Swiggy? SIGN UP
               </button>
             </div>
